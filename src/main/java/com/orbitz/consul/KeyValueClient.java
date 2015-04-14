@@ -230,5 +230,7 @@ public class KeyValueClient {
         if(response.getStatus() != 200) {
             throw new ConsulException(response.readEntity(String.class));
         }
+        
+        response.close();
     }
 }

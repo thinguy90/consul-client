@@ -18,6 +18,9 @@ public class Check {
     @JsonProperty("Script")
     private String script;
 
+    @JsonProperty("http")
+    private String http;
+
     @JsonProperty("Interval")
     private String interval;
 
@@ -71,4 +74,18 @@ public class Check {
     public void setTtl(String ttl) {
         this.ttl = ttl;
     }
+    
+      /**
+       * @return the http request to call
+       */
+      public String getHttp(){
+            return http;
+      }
+
+      /**
+       * @param http the http to set
+       */
+      public void setHttp(String http){
+            this.http = http;
+      }    
 }

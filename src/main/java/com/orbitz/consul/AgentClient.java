@@ -137,6 +137,8 @@ public class AgentClient {
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new ConsulException(response.readEntity(String.class));
         }
+        
+        response.close();
     }
 
     /**
@@ -149,6 +151,8 @@ public class AgentClient {
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new ConsulException(response.readEntity(String.class));
         }
+        
+        response.close();
     }
 
     /**
@@ -183,6 +187,27 @@ public class AgentClient {
 
         registerCheck(check);
     }
+    
+      /**
+       * Registers a Health Check with the Agent.
+       *
+       * @param checkId The Check ID to use. Must be unique for the Agent.
+       * @param name The Check Name.
+       * @param httpURL Health URL for Consul to use.
+       * @param interval Health script run interval in seconds.
+       * @param notes Human readable notes. Not used by Consul.
+       */
+      public void registerCheckHttp(String checkId, String name, String httpURL, long interval, String notes){
+            Check check = new Check();
+
+            check.setId(checkId);
+            check.setName(name);
+            check.setHttp(httpURL);
+            check.setInterval(String.format("%ss", interval));
+            check.setNotes(notes);
+
+            registerCheck(check);
+      }    
 
     /**
      * Registers a Health Check with the Agent.
@@ -226,6 +251,8 @@ public class AgentClient {
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new ConsulException(response.readEntity(String.class));
         }
+        
+        response.close();
     }
 
     /**
@@ -240,6 +267,8 @@ public class AgentClient {
         if (response.getStatus() != Response.Status.OK.getStatusCode()) {
             throw new ConsulException(response.readEntity(String.class));
         }
+        
+        response.close();
     }
 
     /**
